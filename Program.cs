@@ -8,32 +8,34 @@ namespace PesoIdeal
         {
             Console.Clear();
 
-            string M;
-            double Altura;
-            double PesoM;
-            double PesoF;
+            decimal Altura, Peso;
+            string sexo;
 
-            Console.WriteLine("-----Vamos Conferir Seu Peso.-----\n");
+            Console.Write("Digite sua Altura em m....: ");
 
-            Console.Write("Digite sua altura em m..........:");
-            Altura = Convert.ToDouble (Console.ReadLine());
+            if (!Decimal.TryParse(Console.ReadLine(), out Altura) || Altura >=3 || Altura <=0)
+            {
+                Console.WriteLine("\n\nERROR: A Altura não é um número valido. Tente novamente.");
+                Environment.Exit(1);
+            }        
 
-            Console.Write("Sexo [M]asculino / [F]eminino...:");
-            M = Console.ReadLine().ToUpper();
+            Console.Write("Sexo [M]asculino / [F]eminino...: ");
+            sexo = Console.ReadLine();
 
-            PesoM = (Altura) * (72.7) - (58.0);
-            PesoF = (Altura) * (62.1) - (44.7);
-
-            switch (M)
+            switch (sexo.ToUpper())
             {
                 case "M":
-                    Console.WriteLine($"\nSeu peso ideal é {PesoM:N1}kg.");
+                    Peso = Altura * 72.7m - 58.0m;
+                    Console.Write($"\nSeu peso ideal é {Peso:N1}kg.");
                     break;
                 case "F":
-                    Console.WriteLine($"\nSeu peso ideal é {PesoF:N1}kg.");
+                    Peso = Altura * 62.1m - 44.7m;
+                    Console.Write($"\nSeu peso ideal é {Peso:N1}kg.");
+                    break;
+                default:
+                    Console.Write($"\nERROR: O Peso informado não é valido. {sexo} ");
                     break;
             }
-    
         }
     }
 }
