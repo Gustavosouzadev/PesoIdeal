@@ -11,6 +11,10 @@ namespace PesoIdeal
             decimal Altura, Peso;
             string sexo;
 
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("----Peso ideal----\n");
+
+            Console.ResetColor();
             Console.Write("Digite sua Altura em m....: ");
 
             if (!Decimal.TryParse(Console.ReadLine(), out Altura) || Altura >=3 || Altura <=0)
